@@ -1,5 +1,6 @@
 stages:
-  -release
+    - release
+
 
 release:
     stage: release
