@@ -1,3 +1,6 @@
+stages:
+  -release
+
 release:
     stage: release
     image: node:14
