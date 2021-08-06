@@ -1,16 +1,12 @@
 stages:
     - release
 
-
 release:
     stage: release
     image: node:14
     variables:
     DOCKER_DRIVER: overlay2
-    TEMPLATE_REPO: https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.widas.de/cidaas-management/cidaas-versioning-ci-templates.git
     SCRIPTS_PATH: cidaas-versioning-ci-templates/scripts/js-sdk
-    SCRIPTS_PATH_SHORT: cidaas-versioning-ci-templates/scripts
-    NYCRC_PATH: cidaas-versioning-ci-templates/.nycrc
     before_script:
         - mkdir -p ~/.docker
         - echo $CIM_DOCKER_REG_NEXUS > ~/.docker/config.json
@@ -20,6 +16,7 @@ release:
         - npm install --save-dev semantic-release
         - chmod 700 ./${SCRIPTS_PATH}/init_npmrc.sh
         - ./${SCRIPTS_PATH}/init_npmrc.sh
+        - npm install typescript -g
         - npm run build
         - rm -rf ./lib ./scripts ./spec .gitlab-ci.yml ./cidaas-versioning-ci-templates
         - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-internal/ --username $NPM_USERNAME --password $NPM_PASSWORD --email $NPM_EMAIL
