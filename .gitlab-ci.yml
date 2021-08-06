@@ -40,11 +40,11 @@ release:
     script:
         - apt update && apt install jq -y
         - npm install -g npm-cli-adduser
+        - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-internal/ --username $NPM_USERNAME --password $NPM_PASSWORD --email $NPM_EMAIL
         - npm install --save-dev semantic-release
         - npm install typescript -g
         - npm run build
         - rm -rf ./lib ./scripts ./spec .gitlab-ci.yml ./cidaas-versioning-ci-templates
-        - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-internal/ --username $NPM_USERNAME --password $NPM_PASSWORD --email $NPM_EMAIL
         - npm run semantic-release
         - echo "PACKAGE_VERSION="$(cat package.json | jq .version)"" >> variables.env
     artifacts:
