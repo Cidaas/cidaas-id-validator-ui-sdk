@@ -1,1 +1,1 @@
-Für Alvin
+Set of software tools based on typescript, used to help developing id validator ui
