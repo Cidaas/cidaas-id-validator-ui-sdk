@@ -1,12 +1,13 @@
 stages:
     - release
 
+variables:
+    DOCKER_DRIVER: overlay2
+    SCRIPTS_PATH: cidaas-versioning-ci-templates/scripts/js-sdk
+
 release:
     stage: release
     image: node:14
-    variables:
-    DOCKER_DRIVER: overlay2
-    SCRIPTS_PATH: cidaas-versioning-ci-templates/scripts/js-sdk
     before_script:
         - mkdir -p ~/.docker
         - echo $CIM_DOCKER_REG_NEXUS > ~/.docker/config.json
