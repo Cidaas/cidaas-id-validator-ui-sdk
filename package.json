@@ -1,0 +1,14 @@
+{
+  "name": "cidaas-id-validator-ui-sdk",
+  "version": "1.0.0",
+  "description": "Set of software tools based on typescript, used to help developing id validator ui",
+  "scripts": {
+    "build": "tsc",
+    "publish": "npm publish --registry=http://nexus.widas.de/repository/npm-internal/"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ]
+}
