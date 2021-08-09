@@ -1,13 +1,14 @@
 export function invokeCase(token, settingsId, baseUrl, idValidatorUrl) {
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      let response = JSON.parse(this.responseText);
-      window.location.href = response.redirectUrl;
+  const xhr = new XMLHttpRequest();
+  xhr.responseType = 'json';
+  xhr.onload = function (e) {
+    if (this.status == 201) {
+      const redirectUrl = decodeURIComponent(this.response.data.case_processing_url);
+      window.location.href = redirectUrl;
     }
   };
-  request.open('GET', baseUrl + '/idval-sign-srv/caseinvocation/' + settingsId + '?redirect_uri=' + idValidatorUrl);
-  request.setRequestHeader("Authorization", "Bearer " + token);
-  request.setRequestHeader("Content-Type", "application/json");
-  request.send();
+  xhr.open('POST', baseUrl + '/idval-sign-srv/caseinvocation');
+  xhr.setRequestHeader("Authorization", "Bearer " + token);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify({ 'redirect_url': idValidatorUrl, 'validation_settings_id': settingsId }));
 }
