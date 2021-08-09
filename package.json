@@ -4,11 +4,58 @@
   "description": "Set of software tools based on typescript, used to help developing id validator ui",
   "scripts": {
     "build": "tsc",
-    "publish": "npm publish --registry=http://nexus.widas.de/repository/npm-internal/"
+    "publish": "npm publish --registry=http://nexus.widas.de/repository/npm-internal/",
+    "semantic-release": "semantic-release"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "/dist"
-  ]
+  ],
+  "devDependencies": {
+        "@semantic-release/changelog": "5.0.1",
+        "@semantic-release/commit-analyzer": "8.0.1",
+        "@semantic-release/git": "9.0.0",
+        "@semantic-release/gitlab": "6.0.9",
+        "@semantic-release/npm": "7.0.10",
+        "@semantic-release/release-notes-generator": "9.0.2",
+        "semantic-release": "17.4.3"
+    },
+    "release": {
+        "branches": [
+          "master"
+        ],
+        "prepare": [
+          "@semantic-release/changelog",
+          "@semantic-release/npm",
+          {
+            "path": "@semantic-release/git",
+            "assets": [
+              "package.json",
+              "package-lock.json",
+              "README.md"
+            ],
+            "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+          }
+        ],
+        "plugins": [
+          "@semantic-release/commit-analyzer",
+          "@semantic-release/release-notes-generator",
+          [
+            "@semantic-release/npm",
+            {
+              "npmPublish": true
+            }
+          ],
+          "@semantic-release/gitlab",
+          "@semantic-release/git"
+        ]
+    },
+    "engines": {
+        "node": ">=6.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://gitlab.widas.de/cidaas-v2/id-validator/cidaas-id-validator-ui-sdk/cidaas-id-validator-ui-sdk.git"
+    }
 }
