@@ -4,7 +4,8 @@
   "description": "Set of software tools based on typescript, used to help developing id validator ui",
   "scripts": {
     "build": "tsc",
-    "publish": "npm publish --registry=http://nexus.widas.de/repository/npm-internal/"
+    "publish": "npm publish --registry=http://nexus.widas.de/repository/npm-internal/",
+    "semantic-release": "semantic-release"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
