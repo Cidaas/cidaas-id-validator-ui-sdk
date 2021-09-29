@@ -38,24 +38,34 @@
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": false
-        }
-      ],
-      "@semantic-release/gitlab",
-      "@semantic-release/git"
-    ]
-  },
-    "engines": {
-        "node": ">=6.0.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://gitlab.widas.de/cidaas-v2/id-validator/cidaas-id-validator-ui-sdk/cidaas-id-validator-ui-sdk.git"
+    "release": {
+        "branches": [
+            "main"
+        ],
+        "prepare": [
+            "@semantic-release/changelog",
+            "@semantic-release/npm",
+            {
+                "path": "@semantic-release/git",
+                "assets": [
+                    "package.json",
+                    "package-lock.json",
+                    "README.md"
+                ],
+                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+        ],
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            [
+                "@semantic-release/npm",
+                {
+                    "npmPublish": true
+                }
+            ],
+            "@semantic-release/gitlab",
+            "@semantic-release/git"
+        ]
     }
 }
