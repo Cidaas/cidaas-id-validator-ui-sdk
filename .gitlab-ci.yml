@@ -37,7 +37,7 @@ release:
         - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-internal/ --username $NPM_USERNAME --password $NPM_PASSWORD  --email $NPM_EMAIL
         - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-all/ --username $NPM_USERNAME --password $NPM_PASSWORD --email $NPM_EMAIL
         - npm install typescript -g
-        - npm i -f
+        - npm i
         - npm run build
         - npm run semantic-release
         - echo "PACKAGE_VERSION="$(cat package.json | jq .version)"" >> variables.env
