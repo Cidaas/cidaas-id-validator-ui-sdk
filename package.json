@@ -39,6 +39,8 @@
       }
     ],
     "release": {
+        "verifyConditions": "@semantic-release/npm",
+        "publish": "@semantic-release/npm",
         "branches": [
             "main"
         ],
