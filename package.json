@@ -16,15 +16,15 @@
     "registry": "http://nexus.widas.de/repository/npm-internal/"
   },
   "devDependencies": {
-        "@semantic-release/changelog": "6.0.0",
-        "@semantic-release/commit-analyzer": "9.0.1",
-        "@semantic-release/git": "10.0.0",
-        "@semantic-release/gitlab": "6.2.2",
-        "@semantic-release/npm": "8.0.0",
-        "@semantic-release/release-notes-generator": "10.0.2",
-        "semantic-release": "18.0.0"
-    },
-    "release": {
+    "@semantic-release/changelog": "6.0.0",
+    "@semantic-release/commit-analyzer": "9.0.1",
+    "@semantic-release/git": "10.0.0",
+    "@semantic-release/gitlab": "6.2.2",
+    "@semantic-release/npm": "8.0.0",
+    "@semantic-release/release-notes-generator": "10.0.2",
+    "semantic-release": "18.0.0"
+  },
+  "release": {
     "branches": [
       "main"
     ],
@@ -54,7 +54,7 @@
       "@semantic-release/git"
     ]
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "https://gitlab.widas.de/cidaas-v2/id-validator/cidaas-id-validator-ui-sdk.git"
   }
