@@ -1,6 +1,10 @@
-## cidaas-id-validator-sdk
+# About cidaas ID Validator
 
-Set of software tools based on typescript, used to help developing id validator ui
+The cidaas ID Validator is an innovative ID verification solution that offers a complete, fully automated, eIDAS-compliant digital identity check for different documents like an ID card, passport, driving license, etc. Agile and intuitive AI models help verify the identity documents and the liveness of a person quickly.
+
+# cidaas-id-validator-ui-sdk
+
+This cidaas id validator ui sdk provides a set of software tools based on typescript, used to help developing the id validator ui.
 
 #### Installation
 
