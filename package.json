@@ -64,8 +64,7 @@
                     "npmPublish": true
                 }
             ],
-            "@semantic-release/gitlab",
-            "@semantic-release/git"
+            "@semantic-release/gitlab"
         ]
     }
   }
