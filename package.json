@@ -12,6 +12,9 @@
   "files": [
     "/dist"
   ],
+  "publishConfig": {
+    "registry": "http://nexus.widas.de/repository/npm-internal/"
+  },
   "devDependencies": {
         "@semantic-release/changelog": "6.0.0",
         "@semantic-release/commit-analyzer": "9.0.1",
@@ -22,8 +25,8 @@
         "semantic-release": "18.0.0"
     },
     "release": {
-      "branches": [
-        "main"
+    "branches": [
+      "master"
     ],
     "prepare": [
       "@semantic-release/changelog",
@@ -38,38 +41,21 @@
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],
-    "release": {
-        "extends": ["@semantic-release/npm-config"],
-        "verifyConditions": "@semantic-release/npm",
-        "publish": "@semantic-release/npm",
-        "fail": false,
-        "branches": [
-            "main"
-        ],
-        "prepare": [
-            "@semantic-release/changelog",
-            "@semantic-release/npm",
-            {
-                "path": "@semantic-release/git",
-                "assets": [
-                    "package.json",
-                    "package-lock.json",
-                    "README.md"
-                ],
-                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-            }
-        ],
-        "plugins": [
-            "@semantic-release/commit-analyzer",
-            "@semantic-release/release-notes-generator",
-            [
-                "@semantic-release/npm",
-                {
-                    "npmPublish": true
-                }
-            ],
-            "@semantic-release/gitlab"
-        ]
-    }
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": true
+        }
+      ],
+      "@semantic-release/gitlab",
+      "@semantic-release/git"
+    ]
+  },
+    "repository": {
+    "type": "git",
+    "url": "https://gitlab.widas.de/cidaas-v2/id-validator/cidaas-id-validator-ui-sdk.git"
   }
 }
