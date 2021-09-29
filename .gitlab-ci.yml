@@ -39,6 +39,7 @@ release:
         - npm install typescript -g
         - npm i
         - npm run build
+        - cat .npmrc
         - npm run semantic-release
         - echo "PACKAGE_VERSION="$(cat package.json | jq .version)"" >> variables.env
     artifacts:
