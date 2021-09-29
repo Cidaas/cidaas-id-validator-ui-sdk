@@ -1,27 +1,16 @@
+include:
+  - project: 'cidaas-management/cidaas-versioning-ci-templates'
+    file: 'js-sdk.yml'
+
 stages:
-    - prepare
-    - release
+  - test
+  - release
+  - module
+  - publish
 
-variables:
-    DOCKER_DRIVER: overlay2
-    SCRIPTS_PATH: cidaas-versioning-ci-templates/scripts/js-sdk
-
-get_version:
-    image: makocchi/alpine-git-curl-jq
-    stage: prepare
-    script:
-        - echo "PACKAGE_VERSION="$(cat package.json | jq .version)"" >> variables.env
-    artifacts:
-      reports:
-        dotenv:
-          - variables.env
-    only:
-        - main
 
 release:
     stage: release
-    dependencies:
-        - get_version
     image: node:14
     before_script:
         - mkdir -p ~/.docker
@@ -36,8 +25,7 @@ release:
         - npm install -g npm-cli-adduser
         - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-internal/ --username $NPM_USERNAME --password $NPM_PASSWORD --email $NPM_EMAIL
         - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-all/ --username $NPM_USERNAME --password $NPM_PASSWORD --email $NPM_EMAIL
-        - npm install --save-dev semantic-release
-        - npm install typescript -g
+        - npm i -f
         - npm run build
         - npm run semantic-release
         - echo "PACKAGE_VERSION="$(cat package.json | jq .version)"" >> variables.env
@@ -45,6 +33,58 @@ release:
       reports:
         dotenv:
           - variables.env
-
     only:
-        -  main
+        - main
+
+
+# stages:
+#     - prepare
+#     - release
+# 
+# variables:
+#     DOCKER_DRIVER: overlay2
+#     SCRIPTS_PATH: cidaas-versioning-ci-templates/scripts/js-sdk
+# 
+# get_version:
+#     image: makocchi/alpine-git-curl-jq
+#     stage: prepare
+#     script:
+#         - echo "PACKAGE_VERSION="$(cat package.json | jq .version)"" >> variables.env
+#     artifacts:
+#       reports:
+#         dotenv:
+#           - variables.env
+#     only:
+#         - main
+# 
+# release:
+#     stage: release
+#     dependencies:
+#         - get_version
+#     image: node:14
+#     before_script:
+#         - mkdir -p ~/.docker
+#         - echo $CIM_DOCKER_REG_NEXUS > ~/.docker/config.json
+#         - echo "init.author.name=$CIM_NPM_AUTHOR_NAME" >> .npmrc
+#         - echo "init.author.email=$CIM_NPM_AUTHOR_EMAIL" >> .npmrc
+#         - echo "init.author.url=$CIM_NPM_AUTHOR_URL" >> .npmrc
+#         - echo "registry=$CIM_NPM_REGISTRY" >> .npmrc
+#         - echo "@types:registry=$CIM_NPM_TYPES_REGISTRY" >> .npmrc
+#     script:
+#         - apt update && apt install jq -y
+#         - npm install -g npm-cli-adduser
+#         - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-internal/ --username $NPM_USERNAME --password $NPM_PASSWORD # --email $NPM_EMAIL
+#         - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-all/ --username $NPM_USERNAME --password $NPM_PASSWORD # --email $NPM_EMAIL
+#         - npm install --save-dev semantic-release
+#         - npm install typescript -g
+#         - npm run build
+#         - npm run semantic-release
+#         - echo "PACKAGE_VERSION="$(cat package.json | jq .version)"" >> variables.env
+#     artifacts:
+#       reports:
+#         dotenv:
+#           - variables.env
+# 
+#     only:
+#         -  main
+# 
