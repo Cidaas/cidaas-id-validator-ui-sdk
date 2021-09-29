@@ -41,6 +41,7 @@
     "release": {
         "verifyConditions": "@semantic-release/npm",
         "publish": "@semantic-release/npm",
+        "fail": false,
         "branches": [
             "main"
         ],
