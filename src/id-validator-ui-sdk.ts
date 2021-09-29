@@ -1,4 +1,4 @@
-export function invokeCase(token, settingsId, baseUrl, idValidatorUrl) {
+export function invokeCase(token: string, settingsId: string, baseUrl: string, idValidatorUrl: string, externalReference: (string | undefined)) {
   const xhr = new XMLHttpRequest();
   xhr.responseType = 'json';
   xhr.onload = function (e) {
@@ -10,5 +10,9 @@ export function invokeCase(token, settingsId, baseUrl, idValidatorUrl) {
   xhr.open('POST', baseUrl + '/idval-sign-srv/caseinvocation');
   xhr.setRequestHeader("Authorization", "Bearer " + token);
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.send(JSON.stringify({ 'redirect_url': idValidatorUrl, 'validation_settings_id': settingsId }));
+  let json = JSON.stringify({ 'redirect_url': idValidatorUrl, 'validation_settings_id': settingsId})
+  if (externalReference){
+    json = json.concat(JSON.stringify({'external_reference': externalReference}))
+  }
+  xhr.send(json);
 }
