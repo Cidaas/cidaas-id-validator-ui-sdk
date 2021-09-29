@@ -39,6 +39,7 @@
       }
     ],
     "release": {
+        "extends": ["@semantic-release/npm-config"],
         "verifyConditions": "@semantic-release/npm",
         "publish": "@semantic-release/npm",
         "fail": false,
