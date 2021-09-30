@@ -56,6 +56,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.widas.de/cidaas-v2/id-validator/cidaas-id-validator-ui-sdk.git"
+    "url": "https://gitlab.widas.de/cidaas-public-devkits/cidaas-public-sdks/cidaas-id-validator-ui-sdk"
   }
 }
