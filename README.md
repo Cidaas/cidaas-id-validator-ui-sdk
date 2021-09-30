@@ -4,7 +4,7 @@ The cidaas ID Validator is an innovative ID verification solution that offers a 
 
 # cidaas-id-validator-ui-sdk
 
-This cidaas id validator ui sdk provides a set of software tools based on typescript, used to help developing the id validator ui.
+This cidaas id validator ui sdk provides a set of software tools based on typescript, used to help developing the id validator ui. 
 
 #### Installation
 
