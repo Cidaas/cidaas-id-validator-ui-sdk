@@ -11,7 +11,8 @@ export function invokeCase(
   xhr.onload = function (e) {
     if (this.status == 201) {
       const redirectUrl = decodeURIComponent(this.response.data.case_processing_url);
-      window.location.href = redirectUrl;
+      const clientId = this.response.data.client_id;
+      window.location.href = `${redirectUrl}?client_id=${clientId}`;
     }
   };
   xhr.open("POST", baseUrl + "/idval-sign-srv/caseinvocation");
