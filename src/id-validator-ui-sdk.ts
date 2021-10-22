@@ -1,3 +1,4 @@
+import { CaseInvocationResponse } from './ICaseInvocationResponse';
 export function invokeCase(
   token: string,
   settingsId: string,
@@ -10,9 +11,9 @@ export function invokeCase(
   xhr.responseType = "json";
   xhr.onload = function (e) {
     if (this.status == 201) {
-      const redirectUrl = decodeURIComponent(this.response.data.case_processing_url);
-      const clientId = this.response.data.client_id;
-      window.location.href = `${redirectUrl}?client_id=${clientId}`;
+      const response: CaseInvocationResponse = JSON.parse(this.response)
+      const redirectUrl = decodeURIComponent(response.data.case_processing_url);
+      window.location.href = `${redirectUrl}?client_id=${response.data.client_id}&flow_type=${response.data.flow_type}`;
     }
   };
   xhr.open("POST", baseUrl + "/idval-sign-srv/caseinvocation");
