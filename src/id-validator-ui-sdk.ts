@@ -7,7 +7,6 @@ import { CaseInvocationResponse } from './interface/ICaseInvocationResponse';
  * @param redirectURL URL to the destination where the user will be redirected to after finishing the cidaas ID Validation process
  * @param clientId UUID of the cidaas ID Validator application which can be found in the cidaas Admin Dashboard)
  * @param externalReference (Optional) String that can be used to identify a finished case
- * @returns String including the error code and message if the request was not successful
  */
 export function invokeCase(
   token: string,
