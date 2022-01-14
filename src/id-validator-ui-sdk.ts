@@ -7,7 +7,6 @@ import { CaseInvocationResponse } from './interface/ICaseInvocationResponse';
  * @param redirectURL URL to the destination where the user will be redirected to after finishing the cidaas ID Validation process
  * @param clientId UUID of the cidaas ID Validator application which can be found in the cidaas Admin Dashboard)
  * @param externalReference (Optional) String that can be used to identify a finished case
- * @returns String including the error code and message if the request was not successful
  */
 export function invokeCase(
   token: string,
@@ -19,18 +18,20 @@ export function invokeCase(
 ): void | string {
   // Create request
   const xhr = new XMLHttpRequest();
+  const HTTP_NOT_FOUND = 200;
+  const HTTP_UNAUTHORIZED = 200;
 
   // What to do when we get a response
   xhr.onload = function (e) {
-    if (this.status === 401) {
-      return '401: Unauthorized';
+    if (this.status === HTTP_NOT_FOUND || this.status === HTTP_UNAUTHORIZED) {
+      console.info(`Error during Case Invocation. Status: ${this.status}`);
     } else {
       const response: CaseInvocationResponse = this.response;
       if (response && response.success && response.data) {
         const redirectUrl = decodeURIComponent(response.data.case_processing_url);
         window.location.href = `${redirectUrl}?client_id=${response.data.client_id}&flow_type=${response.data.flow_type}`;
       } else {
-        return `${response.error_code}: ${response.error}`;
+        console.info(`${response.error_code}: ${response.error}`);
       }
     }
   };
