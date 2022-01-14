@@ -18,8 +18,8 @@ export function invokeCase(
 ): void | string {
   // Create request
   const xhr = new XMLHttpRequest();
-  const HTTP_NOT_FOUND = 200;
-  const HTTP_UNAUTHORIZED = 200;
+  const HTTP_NOT_FOUND = 404;
+  const HTTP_UNAUTHORIZED = 401;
 
   // What to do when we get a response
   xhr.onload = function (e) {

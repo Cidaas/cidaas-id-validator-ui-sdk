@@ -4,9 +4,9 @@ The cidaas ID Validator is an innovative ID verification solution that offers a 
 
 # cidaas-id-validator-ui-sdk
 
-This cidaas id validator ui sdk provides a set of software tools based on typescript, used to help developing the id validator ui. 
+This cidaas id validator ui sdk provides a set of software tools based on typescript, used to help developing the id validator ui.
 
-#### Installation 
+#### Installation
 
 ```
 npm install cidaas-id-validator-sdk
@@ -19,10 +19,11 @@ npm install cidaas-id-validator-sdk
 to invoke a new case, call **invokeCase()**. Afterwards a new case will be generated and you will be redirected to id validator url.
 
 ##### Sample code
+
 ```
 import { invokeCase } from 'cidaas-id-validator-ui-sdk';
 
 ...
 
-invokeCase(access_token, caseSettingId, base_url, id_validator_url, clientId);
+invokeCase(access_token, case_setting_id, base_url, id_validator_url, client_id);
 ```
