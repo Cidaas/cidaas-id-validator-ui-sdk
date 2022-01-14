@@ -1,7 +1,9 @@
 export interface CaseInvocationResponse {
-  data: CaseInvocationData;
+  data?: CaseInvocationData;
   status: number;
   success: boolean;
+  error?: string;
+  error_code?: string;
 }
 
 export interface CaseInvocationData {

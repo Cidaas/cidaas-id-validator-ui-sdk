@@ -1,2 +1,1 @@
-export { invokeCase } from './id-validator-ui-sdk'; 
-
+export { invokeCase } from './id-validator-ui-sdk';
