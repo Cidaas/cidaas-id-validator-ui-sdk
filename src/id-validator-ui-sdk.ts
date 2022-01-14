@@ -25,7 +25,7 @@ export function invokeCase(
     if (this.status === 401) {
       return '401: Unauthorized';
     } else {
-      const response: CaseInvocationResponse = JSON.parse(this.response);
+      const response: CaseInvocationResponse = this.response;
       if (response && response.success && response.data) {
         const redirectUrl = decodeURIComponent(response.data.case_processing_url);
         window.location.href = `${redirectUrl}?client_id=${response.data.client_id}&flow_type=${response.data.flow_type}`;
