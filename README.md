@@ -24,5 +24,5 @@ import { invokeCase } from 'cidaas-id-validator-ui-sdk';
 
 ...
 
-invokeCase(accessToken, caseSettingId, base_url, id_validator_url, clientId);
+invokeCase(accessToken, case_setting_id, base_url, redirect_url, client_id, execution_parameter);
 ```
