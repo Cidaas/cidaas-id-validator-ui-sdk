@@ -1,5 +1,4 @@
 import { CaseInvocationResponse } from './interface/ICaseInvocationResponse';
-import * as XMLHttpRequest from 'xhr2';
 /**
  * This function will invoke a cidaas ID Validation case in the cidaas system and redirect to the cidaas ID Validator on a successful response
  * @param token Valid OAuth2 Token for the cidaas ID Validator application
