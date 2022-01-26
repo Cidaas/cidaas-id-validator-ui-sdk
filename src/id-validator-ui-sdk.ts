@@ -5,7 +5,6 @@ import { CaseInvocationResponse } from './interface/ICaseInvocationResponse';
  * @param settingsID UUID of the cidaas ID Validator setting that shall be used for this case
  * @param baseUrl Base URL of the cidaas tenant e.g. https://demo.cidaas.de
  * @param redirectURL URL to the destination where the user will be redirected to after finishing the cidaas ID Validation process
- * @param clientId UUID of the cidaas ID Validator application which can be found in the cidaas Admin Dashboard)
  * @param externalReference (Optional) String that can be used to identify a finished case
  */
 export function invokeCase(
@@ -13,7 +12,6 @@ export function invokeCase(
   settingsId: string,
   baseUrl: string,
   redirectURL: string,
-  clientId: string,
   externalReference?: string
 ): void | string {
   // Create request
@@ -41,7 +39,7 @@ export function invokeCase(
   xhr.open('POST', baseUrl + '/idval-sign-srv/caseinvocation');
   xhr.setRequestHeader('Authorization', 'Bearer ' + token);
   xhr.setRequestHeader('Content-Type', 'application/json');
-  let json = JSON.stringify({ redirect_url: redirectURL, validation_settings_id: settingsId, client_id: clientId });
+  let json = JSON.stringify({ redirect_url: redirectURL, validation_settings_id: settingsId });
   if (externalReference) {
     json = json.concat(JSON.stringify({ external_reference: externalReference }));
   }
