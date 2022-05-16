@@ -25,5 +25,6 @@ release:
     - git tag -d $(git tag -l)
     - git fetch --all --tags
     - semantic-release
+    - npm publish
   only:
     - main
