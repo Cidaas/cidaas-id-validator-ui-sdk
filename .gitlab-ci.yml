@@ -20,10 +20,10 @@ release:
     - npm ci
     - npm run build
     - npm config set always-auth true
-    - npm config set @cidaas:registry=https://gitlab.widas.de/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
+    - npm config set @package_registry:registry=https://gitlab.widas.de/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
     - npm config set -- //gitlab.widas.de/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${GITLAB_TOKEN}
     - git tag -d $(git tag -l)
-    - git fetch --all --tags   
+    - git fetch --all --tags
     - semantic-release
   only:
     - main
