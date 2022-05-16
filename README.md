@@ -2,21 +2,21 @@
 
 The cidaas ID Validator is an innovative ID verification solution that offers a complete, fully automated, eIDAS-compliant digital identity check for different documents like an ID card, passport, driving license, etc. Agile and intuitive AI models help verify the identity documents and the liveness of a person quickly.
 
-# cidaas-id-validator-ui-sdk
+## cidaas ID Validator UI SDK
 
-This cidaas id validator ui sdk provides a set of software tools based on typescript, used to help developing the id validator ui.
+This cidaas ID Validator UI SDK provides a set of software tools based on typescript, used to help intergating the cidaas ID Validator UI.
 
 #### Installation
 
 ```
-npm install cidaas-id-validator-sdk
+npm install @cidaas/id-validator-sdk
 ```
 
-#### Usage
+### Usage
 
 #### Case Invocation
 
-to invoke a new case, call **invokeCase()**. Afterwards a new case will be generated and you will be redirected to id validator url.
+To invoke a new case, call **invokeCase()**. Afterwards a new case will be generated and you will be redirected to id validator url.
 
 ##### Sample code
 
