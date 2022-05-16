@@ -1,29 +1,9 @@
 stages:
-  - prepare
   - release
-
-variables:
-  DOCKER_DRIVER: overlay2
-  SCRIPTS_PATH: cidaas-versioning-ci-templates/scripts/js-sdk
-
-get_version:
-  image: makocchi/alpine-git-curl-jq
-  stage: prepare
-  script:
-    - echo "PACKAGE_VERSION="$(cat package.json | jq .version)"" >> variables.env
-  artifacts:
-    reports:
-      dotenv:
-        - variables.env
-  only:
-    - main
 
 release:
   image: docker-registry.widas.de:5050/dockerregistry/common/semantic-release:v1.0.4
   stage: release
-  dependencies:
-    - get_version
-  image: node:14
   before_script:
     - mkdir -p ~/.docker
     - echo $CIM_DOCKER_REG_NEXUS > ~/.docker/config.json
@@ -34,14 +14,14 @@ release:
     - echo "@types:registry=$CIM_NPM_TYPES_REGISTRY" >> .npmrc
   script:
     - npm install -g npm-cli-adduser
-    - npm install -g typescript 
+    - npm install -g typescript
     - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-internal/ --username $NPM_USERNAME --password $NPM_PASSWORD  --email $NPM_EMAIL
-    - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-all/ --username $NPM_USERNAME --password $NPM_PASSWORD --email $NPM_EMAIL    
+    - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-all/ --username $NPM_USERNAME --password $NPM_PASSWORD --email $NPM_EMAIL
     - npm ci
     - npm run build
     - npm config set always-auth true
     - npm config set @cidaas:registry=https://gitlab.widas.de/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
     - npm config set -- //gitlab.widas.de/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${GITLAB_TOKEN}
-    - npm run semantic-release
+    - semantic-release
   only:
     - main

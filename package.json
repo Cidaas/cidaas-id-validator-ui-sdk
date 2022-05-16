@@ -4,8 +4,7 @@
   "description": "Set of software tools based on typescript, used to help developing id validator ui",
   "scripts": {
     "build": "tsc",
-    "publish": "npm publish",
-    "semantic-release": "semantic-release"
+    "publish": "npm publish"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
