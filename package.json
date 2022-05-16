@@ -1,5 +1,5 @@
 {
-  "name": "@cidaas/id-validator-ui-sdk",
+  "name": "@package_registry/id-validator-ui-sdk",
   "version": "1.0.13",
   "description": "Set of software tools based on typescript, used to help developing id validator ui",
   "scripts": {
