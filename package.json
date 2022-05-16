@@ -1,25 +1,17 @@
 {
-  "name": "@cidaas/cidaas-id-validator-ui-sdk",
-  "version": "1.0.14",
+  "name": "@cidaas/id-validator-ui-sdk",
+  "version": "1.0.13",
   "description": "Set of software tools based on typescript, used to help developing id validator ui",
   "scripts": {
-    "build": "tsc",
-    "publish": "npm publish"
+    "build": "tsc"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "/dist"
   ],
-  "publishConfig": {
-    "registry": "http://nexus.widas.de/repository/npm-internal/"
-  },
   "devDependencies": {
     "typescript": "4.5.4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.widas.de/cidaas-public-devkits/cidaas-public-sdks/cidaas-id-validator-ui-sdk.git"
   },
   "dependencies": {
     "xhr2": "0.2.1"
