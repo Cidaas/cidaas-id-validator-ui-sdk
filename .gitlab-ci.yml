@@ -39,6 +39,9 @@ release:
     - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-all/ --username $NPM_USERNAME --password $NPM_PASSWORD --email $NPM_EMAIL    
     - npm ci
     - npm run build
+    - npm config set always-auth true
+    - npm config set @cidaas:registry=https://gitlab.widas.de/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
+    - npm config set -- //gitlab.widas.de/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${GITLAB_TOKEN}
     - npm run semantic-release
   only:
     - main
