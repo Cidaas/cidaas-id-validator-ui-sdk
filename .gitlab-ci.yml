@@ -8,6 +8,7 @@ release:
     - npm install -g typescript
     - npm ci --production
     - npm run build
+    - cp package.json dist/
     - npm config set always-auth true
     - npm config set @cidaas:registry=https://gitlab.widas.de/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
     - npm config set -- //gitlab.widas.de/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${GITLAB_TOKEN}
