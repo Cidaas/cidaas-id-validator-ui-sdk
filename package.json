@@ -1,6 +1,6 @@
 {
   "name": "@cidaas/id-validator-ui-sdk",
-  "version": "1.0.14",
+  "version": "1.0.13",
   "description": "Set of software tools based on typescript, used to help developing id validator ui",
   "scripts": {
     "build": "tsc"
@@ -11,9 +11,15 @@
     "/dist"
   ],
   "devDependencies": {
+    "cz-conventional-changelog": "3.3.0",
     "typescript": "4.5.4"
   },
   "dependencies": {
     "xhr2": "0.2.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

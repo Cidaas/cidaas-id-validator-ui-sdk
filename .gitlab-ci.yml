@@ -13,11 +13,8 @@ release:
     - echo "registry=$CIM_NPM_REGISTRY" >> .npmrc
     - echo "@types:registry=$CIM_NPM_TYPES_REGISTRY" >> .npmrc
   script:
-    - npm install -g npm-cli-adduser
     - npm install -g typescript
-    - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-internal/ --username $NPM_USERNAME --password $NPM_PASSWORD  --email $NPM_EMAIL
-    - npm-cli-adduser --registry=http://nexus.widas.de/repository/npm-all/ --username $NPM_USERNAME --password $NPM_PASSWORD --email $NPM_EMAIL
-    - npm ci
+    - npm ci --production
     - npm run build
     - npm config set always-auth true
     - npm config set @cidaas:registry=https://gitlab.widas.de/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
@@ -25,6 +22,5 @@ release:
     - git tag -d $(git tag -l)
     - git fetch --all --tags
     - semantic-release
-    - npm publish
   only:
     - main
