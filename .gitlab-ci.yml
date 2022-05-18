@@ -4,14 +4,6 @@ stages:
 release:
   image: docker-registry.widas.de:5050/dockerregistry/common/semantic-release:v1.0.4
   stage: release
-  before_script:
-    - mkdir -p ~/.docker
-    - echo $CIM_DOCKER_REG_NEXUS > ~/.docker/config.json
-    - echo "init.author.name=$CIM_NPM_AUTHOR_NAME" >> .npmrc
-    - echo "init.author.email=$CIM_NPM_AUTHOR_EMAIL" >> .npmrc
-    - echo "init.author.url=$CIM_NPM_AUTHOR_URL" >> .npmrc
-    - echo "registry=$CIM_NPM_REGISTRY" >> .npmrc
-    - echo "@types:registry=$CIM_NPM_TYPES_REGISTRY" >> .npmrc
   script:
     - npm install -g typescript
     - npm ci --production
